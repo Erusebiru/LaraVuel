@@ -95,7 +95,6 @@ export default {
         },
         goToPrev() {
             this.$router.push({
-                name: 'users.index',
                 query: {
                     page: this.prevPage,
                 }

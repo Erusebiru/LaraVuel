@@ -1969,7 +1969,6 @@ var getUsers = function getUsers(page, callback) {
     },
     goToPrev: function goToPrev() {
       this.$router.push({
-        name: 'users.index',
         query: {
           page: this.prevPage
         }
