@@ -3,8 +3,8 @@
 @section('content')
 
 
-<div id="proyect">Hola</div>
+<div id="proyect"></div>
 
-
+<script src="{{ mix('js/app.js') }}"></script>
 
 @stop

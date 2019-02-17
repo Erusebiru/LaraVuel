@@ -9,7 +9,7 @@ use DB;
 class ProyectosController extends Controller
 {
     public function index(){
-        return view('proyectos.index');
+        return view('app');
     }
 
     public function showProyect(){

@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*Route::get('/', function () {
+    return view('app');
+});*/
 
 Route::get('api/proyectos','ProyectosController@getProyectos');
 
-Route::get('proyectos','ProyectosController@index');
+Route::get('/{any}','ProyectosController@index')->where('any','.*');
 
-Route::post('proyectos/show/{id}','ProyectosController@showProyect');
+//Route::post('proyectos/show/{id}','ProyectosController@showProyect');
 
 Route::get('api/proyecto','ProyectosController@getSingleProyect');

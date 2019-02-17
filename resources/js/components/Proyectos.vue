@@ -1,18 +1,22 @@
 <template>
     <div class="main">
+        <br><br>
         <h1>PROYECTOS</h1>
         <div class="proyectos">
             <div class="proyecto" v-for="proyecto in proyectos" :key="proyecto.id">
-                <h3> {{ proyecto.name }} </h3>
-                <br>
-                <p> {{ proyecto.description }} </p>
-                <p> {{ proyecto.p_o.name }} </p>
-                <p> {{ proyecto.s_m.name }} </p>
+                <router-link :to="`/proyecto/${proyecto.id}`" class="dropdown-item">
+                    <div>
+                        <h3> {{ proyecto.name }} </h3>
+                        <br>
+                        <p> {{ proyecto.description }} </p>
+                        <p> {{ proyecto.p_o.name }} </p>
+                        <p> {{ proyecto.s_m.name }} </p>
+                    </div>
+                </router-link>
             </div>
         </div>
     </div>
 </template>
-
 <script>
     import axios from 'axios';
     export default {
@@ -31,6 +35,11 @@
 </script>
 
 <style>
+    a {
+        color: "black"; /* blue colors for links too */
+        text-decoration: inherit; /* no underline */
+    }
+
     .main{
         width: 100%;
         display: flex;
@@ -65,5 +74,6 @@
         border-radius: 4px;
         box-shadow: 0 0 20px rgba(0,0,0,1);
         cursor: pointer;
+        color: black;
     }
 </style>
