@@ -1780,8 +1780,10 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/proyecto').then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/proyecto/' + this.$route.params.id).then(function (res) {
       _this.$set(_this.$data, 'proyecto', res.data.proyecto);
+
+      console.log(res);
     });
   },
   data: function data() {
@@ -1821,8 +1823,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -1836,6 +1836,16 @@ __webpack_require__.r(__webpack_exports__);
     return {
       proyectos: []
     };
+  },
+  methods: {
+    goTodetail: function goTodetail(proId) {
+      this.$router.push({
+        name: 'Proyecto',
+        params: {
+          id: proId
+        }
+      });
+    }
   }
 });
 
@@ -37445,7 +37455,7 @@ var render = function() {
     _c("h1", [_vm._v("PROYECTOS")]),
     _vm._v(" "),
     _c("div", { staticClass: "proyecto" }, [
-      _c("h3", [_vm._v(" " + _vm._s(_vm.proyecto.name) + " ")])
+      _c("h2", [_vm._v("the product id is: " + _vm._s(this.$route.params.id))])
     ])
   ])
 }
@@ -37483,30 +37493,26 @@ var render = function() {
       _vm._l(_vm.proyectos, function(proyecto) {
         return _c(
           "div",
-          { key: proyecto.id, staticClass: "proyecto" },
+          {
+            key: proyecto.id,
+            staticClass: "proyecto",
+            on: {
+              click: function($event) {
+                return _vm.goTodetail(proyecto.id)
+              }
+            }
+          },
           [
-            _c(
-              "router-link",
-              {
-                staticClass: "dropdown-item",
-                attrs: { to: "/proyecto/" + proyecto.id }
-              },
-              [
-                _c("div", [
-                  _c("h3", [_vm._v(" " + _vm._s(proyecto.name) + " ")]),
-                  _vm._v(" "),
-                  _c("br"),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(" " + _vm._s(proyecto.description) + " ")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(" " + _vm._s(proyecto.p_o.name) + " ")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(" " + _vm._s(proyecto.s_m.name) + " ")])
-                ])
-              ]
-            )
-          ],
-          1
+            _c("h3", [_vm._v(" " + _vm._s(proyecto.name) + " ")]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("p", [_vm._v(" " + _vm._s(proyecto.description) + " ")]),
+            _vm._v(" "),
+            _c("p", [_vm._v(" " + _vm._s(proyecto.p_o.name) + " ")]),
+            _vm._v(" "),
+            _c("p", [_vm._v(" " + _vm._s(proyecto.s_m.name) + " ")])
+          ]
         )
       }),
       0

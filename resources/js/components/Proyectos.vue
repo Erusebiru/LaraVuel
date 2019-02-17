@@ -3,16 +3,14 @@
         <br><br>
         <h1>PROYECTOS</h1>
         <div class="proyectos">
-            <div class="proyecto" v-for="proyecto in proyectos" :key="proyecto.id">
-                <router-link :to="`/proyecto/${proyecto.id}`" class="dropdown-item">
-                    <div>
-                        <h3> {{ proyecto.name }} </h3>
-                        <br>
-                        <p> {{ proyecto.description }} </p>
-                        <p> {{ proyecto.p_o.name }} </p>
-                        <p> {{ proyecto.s_m.name }} </p>
-                    </div>
-                </router-link>
+            <div class="proyecto" v-for="proyecto in proyectos" :key="proyecto.id" @click="goTodetail(proyecto.id)">
+                <!--<router-link :to="`/proyecto/${proyecto.id}`" class="dropdown-item">-->
+                    <h3> {{ proyecto.name }} </h3>
+                    <br>
+                    <p> {{ proyecto.description }} </p>
+                    <p> {{ proyecto.p_o.name }} </p>
+                    <p> {{ proyecto.s_m.name }} </p>
+                <!--</router-link>-->
             </div>
         </div>
     </div>
@@ -21,7 +19,8 @@
     import axios from 'axios';
     export default {
         mounted(){
-            axios.get('/api/proyectos')
+            axios
+                .get('/api/proyectos')
                 .then((res) => {
                     this.$set(this.$data, 'proyectos', res.data.proyectos)
                 })
@@ -29,6 +28,11 @@
         data() {
             return {
                 proyectos: []
+            }
+        },
+        methods: {
+            goTodetail(proId){
+                this.$router.push({name:'Proyecto',params:{id:proId}})
             }
         }
     }
