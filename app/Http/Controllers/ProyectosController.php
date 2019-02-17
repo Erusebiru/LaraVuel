@@ -17,9 +17,11 @@ class ProyectosController extends Controller
     }
 
     public function getSingleProyect($id){
-        $proyecto = Proyecto::findOrFail($id);
+        $proyecto = Proyecto::with('PO','SM')->findOrFail($id);
         return response()
-            ->json(['proyecto' => $proyecto]);
+        ->json(['proyecto' => $proyecto]);
+        
+        
     }
 
     public function getProyectos(){

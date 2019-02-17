@@ -1,9 +1,11 @@
 <template>
     <div class="main">
         <br><br>
-        <h1>PROYECTOS</h1>
         <div class="proyecto">
-            <h2>the product id is: {{this.$route.params.id}}</h2>
+            <h1>{{ proyecto.name }}</h1>
+            <p>Descripción: {{ proyecto.description }}</p>
+            <p>Scrum Master: {{ proyecto.s_m.name }}</p>
+            <p>Product Owner: {{ proyecto.p_o.name }}</p>
         </div>
     </div>
 </template>
@@ -12,10 +14,11 @@
     import axios from 'axios';
     export default {
         mounted(){
-            axios.get('/api/proyecto/'+this.$route.params.id)
+            axios
+                .get('/api/proyecto/'+this.$route.params.id)
                 .then((res) => {
+                    console.log(res.data);
                     this.$set(this.$data, 'proyecto', res.data.proyecto)
-                    console.log(res);
                 })
         },
         data() {

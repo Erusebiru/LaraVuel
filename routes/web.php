@@ -17,8 +17,9 @@
 
 Route::get('api/proyectos','ProyectosController@getProyectos');
 
+Route::get('api/proyecto/{id}','ProyectosController@getSingleProyect');
+
 Route::get('/{any}','ProyectosController@index')->where('any','.*');
 
 //Route::post('proyectos/show/{id}','ProyectosController@showProyect');
 
-Route::get('api/proyecto/{id}','ProyectosController@getSingleProyect');

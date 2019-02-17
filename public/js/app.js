@@ -1775,15 +1775,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     var _this = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/proyecto/' + this.$route.params.id).then(function (res) {
-      _this.$set(_this.$data, 'proyecto', res.data.proyecto);
+      console.log(res.data);
 
-      console.log(res);
+      _this.$set(_this.$data, 'proyecto', res.data.proyecto);
     });
   },
   data: function data() {
@@ -1829,6 +1831,8 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/proyectos').then(function (res) {
+      console.log(res.data);
+
       _this.$set(_this.$data, 'proyectos', res.data.proyectos);
     });
   },
@@ -6184,7 +6188,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\na {\n    color: \"black\"; /* blue colors for links too */\n    text-decoration: inherit; /* no underline */\n}\n.main{\n    width: 100%;\n    display: flex;\n    flex-wrap: wrap;\n    align-items: center;\n    flex-direction: column;\n}\n.main > h1{\n    padding: 50px;\n    text-align: left;\n}\n.proyectos{\n    width: 70%;\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: center;\n    flex-direction: row;\n}\n.proyecto{\n    \n    min-height: 150px;\n    min-width: 300px;\n    padding: 20px;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    margin: 20px;\n    border-radius: 4px;\n    box-shadow: 0 0 20px rgba(0,0,0,1);\n    cursor: pointer;\n    color: black;\n}\n", ""]);
+exports.push([module.i, "\na {\n    color: \"black\"; /* blue colors for links too */\n    text-decoration: inherit; /* no underline */\n}\n.main{\n    width: 100%;\n    display: flex;\n    flex-wrap: wrap;\n    align-items: center;\n    flex-direction: column;\n}\n.main > h1{\n    padding: 50px;\n    text-align: left;\n}\n.proyectos{\n    width: 70%;\n    display: flex;\n    flex-wrap: wrap;\n    justify-content: center;\n    flex-direction: row;\n}\n.proyecto{\n    \n    min-height: 150px;\n    min-width: 300px;\n    padding: 20px;\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    margin: 20px;\n    border-radius: 4px;\n    box-shadow: 0 0 20px rgba(0,0,0,1);\n    color: black;\n}\n.active{\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -37419,9 +37423,11 @@ var render = function() {
     [
       _c("router-link", { attrs: { tag: "li", to: "/" } }, [_vm._v("Home")]),
       _vm._v(" "),
-      _c("router-link", { attrs: { tag: "li", to: "/proyectos" } }, [
-        _vm._v("Proyecto")
-      ])
+      _c(
+        "router-link",
+        { staticClass: "active", attrs: { tag: "li", to: "/proyectos" } },
+        [_vm._v("Proyecto")]
+      )
     ],
     1
   )
@@ -37452,10 +37458,14 @@ var render = function() {
     _c("br"),
     _c("br"),
     _vm._v(" "),
-    _c("h1", [_vm._v("PROYECTOS")]),
-    _vm._v(" "),
     _c("div", { staticClass: "proyecto" }, [
-      _c("h2", [_vm._v("the product id is: " + _vm._s(this.$route.params.id))])
+      _c("h1", [_vm._v(_vm._s(_vm.proyecto.name))]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Descripción: " + _vm._s(_vm.proyecto.description))]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Scrum Master: " + _vm._s(_vm.proyecto.s_m.name))]),
+      _vm._v(" "),
+      _c("p", [_vm._v("Product Owner: " + _vm._s(_vm.proyecto.p_o.name))])
     ])
   ])
 }
@@ -37495,7 +37505,7 @@ var render = function() {
           "div",
           {
             key: proyecto.id,
-            staticClass: "proyecto",
+            staticClass: "proyecto active",
             on: {
               click: function($event) {
                 return _vm.goTodetail(proyecto.id)

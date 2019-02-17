@@ -3,7 +3,7 @@
         <br><br>
         <h1>PROYECTOS</h1>
         <div class="proyectos">
-            <div class="proyecto" v-for="proyecto in proyectos" :key="proyecto.id" @click="goTodetail(proyecto.id)">
+            <div class="proyecto active" v-for="proyecto in proyectos" :key="proyecto.id" @click="goTodetail(proyecto.id)">
                 <!--<router-link :to="`/proyecto/${proyecto.id}`" class="dropdown-item">-->
                     <h3> {{ proyecto.name }} </h3>
                     <br>
@@ -22,6 +22,7 @@
             axios
                 .get('/api/proyectos')
                 .then((res) => {
+                    console.log(res.data);
                     this.$set(this.$data, 'proyectos', res.data.proyectos)
                 })
         },
@@ -77,7 +78,9 @@
         margin: 20px;
         border-radius: 4px;
         box-shadow: 0 0 20px rgba(0,0,0,1);
-        cursor: pointer;
         color: black;
+    }
+    .active{
+        cursor: pointer;
     }
 </style>
